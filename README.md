@@ -1,16 +1,16 @@
 # Ian Orange Head Illustrations
 
-> 把中文文章里的判断、流程、状态和隐喻，变成一张张有场景、橙色、清晰的像素正文配图。
+> 从开头封面到正文认知锚点，再到结尾总结信息图，把中文文章变成一组有场景、橙色、清晰的像素视觉。
 >
-> 16:9 横版 | 橘子头 IP | 场景化像素风 | 橙色主体 | 中文像素字体 | Codex Skill
+> 16:9 普通封面与正文图 | 公众号 900×383 + 383×383 首图 | 3:4 结尾总结图 | 橘子头 IP | Codex Skill
 
 ---
 
 ## 这个仓库是什么?
 
-Ian Orange Head Illustrations 是一个 Codex Skill，用来指导 AI Agent 为中文文章、帖子、博客、Notion 文档和方法论内容生成正文配图。
+Ian Orange Head Illustrations 是一个 Codex Skill，用来指导 AI Agent 为中文文章、公众号、帖子、博客、Notion 文档和方法论内容生成开头封面、公众号首图、正文配图和结尾总结信息图。
 
-它不是通用插画 prompt，也不是 PPT 信息图模板。它的核心目标是：先理解文章里的认知锚点，再把其中一个判断、流程、结构、状态或隐喻，变成一张有记忆点的 16:9 像素解释图。
+它不是通用插画 prompt，也不是 PPT 模板。它的核心目标是：先理解文章主题和认知锚点，再用封面建立主题，用正文配图解释关键内容，最后用一张用户可以保存并独立使用的行动卡或知识卡收拢全文。
 
 默认视觉 IP 是“橘子头”：一个大头小身、蓬松橙发、简单像素五官、穿黑白服装的 Q 版人物。橘子头不是贴纸或角落装饰，而是正在认真参与系统运转的核心行动者。
 
@@ -42,17 +42,17 @@ Ian Orange Head Illustrations 是一个 Codex Skill，用来指导 AI Agent 为�
 
 默认输出：
 
-- 16:9 横版正文配图
-- 一篇文章的 4-8 张 shot list
-- 每张图的主题、核心意思、结构类型、橘子头动作和中文标注建议
+- 一篇文章的 4-8 张完整配图组：首张封面、中间正文配图、末张总结信息图
+- 每张图的角色、主题、核心意思、结构类型、橘子头动作和中文标注建议
+- 普通封面与正文配图固定为 16:9 横版；公众号首图由 900×383 横图和 383×383 方图组成；结尾总结信息图固定为 3:4 竖版
 - 最终 PNG 图片，保存到 workspace 的 `assets/<article-slug>-illustrations/`
 
 默认不输出：
 
 - PPTX / PDF / Keynote
 - SVG / HTML / Canvas 可编辑图
-- 商业海报或封面 KV
-- 大段文字型信息图
+- 商业海报或品牌 KV
+- PPT 卡片页或大段文字型信息图
 
 ---
 
@@ -66,7 +66,7 @@ Ian Orange Head Illustrations 是一个 Codex Skill，用来指导 AI Agent 为�
 - 大量留白，主体只占画面约 40%-60%
 - 橙色主体，黑色、白色和深灰色辅助
 - 少量清晰的中文像素字体批注
-- 一张图只表达一个核心动作、结构、状态或隐喻
+- 正文图一张只表达一个核心动作、结构、状态或隐喻；结尾总结图围绕一个结果承诺组织 3-5 个模块，每个模块写清具体内容和产出
 - 橘子头必须参与核心动作，不能只是装饰
 - 有创意、清爽、有趣，但不低幼
 
@@ -99,7 +99,7 @@ cp -R ./ian-orange-head-illustrations "${CODEX_HOME:-$HOME/.codex}/skills/"
 安装后，在 Codex 里使用：
 
 ```text
-Use $ian-orange-head-illustrations 为这篇中文文章设计并生成 5 张橘子头像素正文配图。
+Use $ian-orange-head-illustrations 为这篇中文文章设计并生成一组 5 张橘子头像素配图，包含开头封面和结尾总结信息图。
 ```
 
 ---
@@ -125,6 +125,35 @@ Use $ian-orange-head-illustrations 把下面这篇文章生成 4 张橘子头像
 <粘贴文章>
 ```
 
+### 生成完整文章配图组
+
+```text
+Use $ian-orange-head-illustrations 为下面这篇文章生成 5 张配图。
+第 1 张是文章封面，第 5 张是全文总结信息图，中间 3 张只选择最重要的认知锚点。
+封面和正文配图使用 16:9 横版，结尾总结信息图使用 3:4 竖版；保持橘子头 IP、场景化像素风和橙色视觉中心。
+
+<粘贴文章>
+```
+
+### 生成公众号首图
+
+```text
+Use $ian-orange-head-illustrations 为下面这篇文章生成公众号首图。
+使用同一个短标题、核心主题和视觉隐喻，分别制作 900×383 横图和 383×383 方图。
+两张图都保留标题，但要分别构图，不要从横图裁切方图。检查尺寸后再拼成 1283×383 PNG。
+
+<粘贴文章>
+```
+
+拼接命令：
+
+```powershell
+python ian-orange-head-illustrations/scripts/stitch_wechat_cover.py `
+  --wide 01-wechat-cover-wide-900x383.png `
+  --square 01-wechat-cover-square-383x383.png `
+  --output 01-wechat-cover-combined-1283x383.png
+```
+
 ### 为单个概念生成一张图
 
 ```text
@@ -148,13 +177,13 @@ Use $ian-orange-head-illustrations 帮我编辑这张图，去掉左上角的“
 
 1. 读取文章、Markdown、Notion 内容、截图或用户给的主题
 2. 提炼核心观点、认知转折、流程结构和适合视觉化的段落
-3. 先输出 shot list：每张图只选一个认知锚点
-4. 为每张图选择结构类型：Workflow、系统局部、前后对比、角色状态、概念隐喻、方法分层、地图路线或小漫画分镜
+3. 先输出 shot list：首张封面、末张总结信息图，中间每张只选一个认知锚点
+4. 为每张图标明图像角色，并选择相应的封面、正文或总结构图
 5. 重新发明一个低科技、怪诞但成立的物理隐喻
 6. 让橘子头承担核心动作
-7. 每张图单独调用图像模型生成
-8. 按 QA checklist 检查：场景背景、视觉呼吸空间、橘子头身份与动作、像素字体、橙色主体、非 PPT 感
-9. 保存最终 PNG，并报告用途和路径
+7. 每张图单独调用图像模型生成；公众号首图分别生成横图和方图
+8. 按 QA checklist 检查：封面主题与标题、公众号首图尺寸和独立构图、正文单一认知锚点、总结图是否能让用户独立照做或理解，以及共同的场景背景、视觉呼吸空间、橘子头身份与动作、像素字体、橙色主体、非 PPT 感
+9. 公众号首图检查通过后用脚本拼接；保存最终 PNG，并报告用途和路径
 
 ---
 
@@ -175,6 +204,8 @@ Use $ian-orange-head-illustrations 帮我编辑这张图，去掉左上角的“
     │   └── openai.yaml
     ├── assets/
     │   └── orange-head-reference.png
+    ├── scripts/
+    │   └── stitch_wechat_cover.py
     └── references/
         ├── style-dna.md
         ├── orange-head-ip.md
