@@ -1,6 +1,6 @@
 # 生图提示词模板
 
-每张图单独生成。先判断图像角色，再选择对应模板；根据文章内容替换变量，不要把多张图拼在一起。
+每张图单独生成。先判断图像角色，再选择对应模板；根据文章内容替换变量。普通配图不要拼在一起；公众号首图必须先分别生成横图和方图，再用脚本拼接。
 
 ## 文章封面模板
 
@@ -31,6 +31,60 @@ Title placement:
 Constraints:
 The cover establishes theme, mood, and a memorable visual metaphor. Do not summarize the article, list key points, add a subtitle, author information, decorative slogans, or explanatory paragraphs. Keep the title readable and the scene uncluttered. Do not copy the reference image's standing pose, composition, or background.
 ```
+
+## 公众号首图双尺寸模板
+
+两张图使用相同的短标题、核心主题和视觉隐喻，但分别构图。两张都要能单独使用；不要先做横图再裁出方图，也不要让图像模型直接生成拼接图。
+
+### 900×383 横图
+
+```text
+Generate one standalone WeChat official-account cover illustration at exactly 900×383 pixels.
+
+Visual DNA:
+Crisp pixel-art illustration with visible square pixels, stepped edges, and a limited palette. Orange is the dominant subject color; black, white, and dark gray are supporting colors. Create one simple, low-detail pixel-art environment that expresses the article's theme and mood. No anti-aliasing, smooth vector edges, gradients, glow, paper texture, PPT layout, commercial key visual, 3D rendering, or realistic UI.
+
+Recurring IP character required:
+橘子头, a chibi pixel-art person with an oversized head and small body, voluminous tousled orange short hair, light face, simple vertical black pixel eyes, tiny nose and smile, subtle orange freckles, thick stepped black pixel outline, loose black jacket, white shirt, dark trousers, and white sneakers with small orange details. Match the identity anchors in the provided reference image. 橘子头 must perform the main thematic action rather than appear as an avatar or corner decoration.
+
+Article title:
+{文章短标题}
+
+Core theme and visual metaphor:
+{核心主题；横图与方图保持一致}
+
+Wide composition:
+{完整主场景；橘子头的动作；1-2 个主题物件；标题所在的安静区域}
+
+Constraints:
+Keep the title readable at normal mobile viewing size. Use the wide canvas to preserve the complete scene, title, and character action. Do not add a subtitle, author information, decorative slogans, or article key-point lists. Do not reserve or imitate the square cover area inside this image.
+```
+
+### 383×383 方图
+
+```text
+Generate one standalone WeChat official-account square cover illustration at exactly 383×383 pixels.
+
+Visual DNA:
+Crisp pixel-art illustration with visible square pixels, stepped edges, and a limited palette. Orange is the dominant subject color; black, white, and dark gray are supporting colors. Use the same article theme and visual metaphor as the 900×383 cover, but create a new square composition. No anti-aliasing, smooth vector edges, gradients, glow, paper texture, PPT layout, commercial key visual, 3D rendering, or realistic UI.
+
+Recurring IP character required:
+橘子头, a chibi pixel-art person with an oversized head and small body, voluminous tousled orange short hair, light face, simple vertical black pixel eyes, tiny nose and smile, subtle orange freckles, thick stepped black pixel outline, loose black jacket, white shirt, dark trousers, and white sneakers with small orange details. Match the identity anchors in the provided reference image. 橘子头 must perform the main thematic action rather than appear as an avatar or corner decoration.
+
+Article title:
+{与横图相同的文章短标题}
+
+Core theme and visual metaphor:
+{与横图相同的核心主题和隐喻}
+
+Square composition:
+{为方形画布重新安排标题、橘子头和 1-2 个主题物件；说明标题与主体的层级}
+
+Constraints:
+Keep the title readable as a small square thumbnail. Preserve only the essential character action and 1-2 theme objects. Do not crop, scale, or imitate the 900×383 layout. Do not add a subtitle, author information, decorative slogans, or article key-point lists.
+```
+
+两张源图导出为精确尺寸后，使用 `scripts/stitch_wechat_cover.py` 拼成 1283×383 PNG；脚本不负责缩放或裁切。
 
 ## 正文配图模板
 

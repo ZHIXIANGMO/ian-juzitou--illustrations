@@ -2,13 +2,13 @@
 
 > 从开头封面到正文认知锚点，再到结尾总结信息图，把中文文章变成一组有场景、橙色、清晰的像素视觉。
 >
-> 16:9 封面与正文图 | 3:4 结尾总结图 | 橘子头 IP | 场景化像素风 | Codex Skill
+> 16:9 普通封面与正文图 | 公众号 900×383 + 383×383 首图 | 3:4 结尾总结图 | 橘子头 IP | Codex Skill
 
 ---
 
 ## 这个仓库是什么?
 
-Ian Orange Head Illustrations 是一个 Codex Skill，用来指导 AI Agent 为中文文章、帖子、博客、Notion 文档和方法论内容生成开头封面、正文配图和结尾总结信息图。
+Ian Orange Head Illustrations 是一个 Codex Skill，用来指导 AI Agent 为中文文章、公众号、帖子、博客、Notion 文档和方法论内容生成开头封面、公众号首图、正文配图和结尾总结信息图。
 
 它不是通用插画 prompt，也不是 PPT 模板。它的核心目标是：先理解文章主题和认知锚点，再用封面建立主题，用正文配图解释关键内容，最后用一张用户可以保存并独立使用的行动卡或知识卡收拢全文。
 
@@ -44,7 +44,7 @@ Ian Orange Head Illustrations 是一个 Codex Skill，用来指导 AI Agent 为�
 
 - 一篇文章的 4-8 张完整配图组：首张封面、中间正文配图、末张总结信息图
 - 每张图的角色、主题、核心意思、结构类型、橘子头动作和中文标注建议
-- 封面与正文配图固定为 16:9 横版；结尾总结信息图固定为 3:4 竖版
+- 普通封面与正文配图固定为 16:9 横版；公众号首图由 900×383 横图和 383×383 方图组成；结尾总结信息图固定为 3:4 竖版
 - 最终 PNG 图片，保存到 workspace 的 `assets/<article-slug>-illustrations/`
 
 默认不输出：
@@ -135,6 +135,25 @@ Use $ian-orange-head-illustrations 为下面这篇文章生成 5 张配图。
 <粘贴文章>
 ```
 
+### 生成公众号首图
+
+```text
+Use $ian-orange-head-illustrations 为下面这篇文章生成公众号首图。
+使用同一个短标题、核心主题和视觉隐喻，分别制作 900×383 横图和 383×383 方图。
+两张图都保留标题，但要分别构图，不要从横图裁切方图。检查尺寸后再拼成 1283×383 PNG。
+
+<粘贴文章>
+```
+
+拼接命令：
+
+```powershell
+python ian-orange-head-illustrations/scripts/stitch_wechat_cover.py `
+  --wide 01-wechat-cover-wide-900x383.png `
+  --square 01-wechat-cover-square-383x383.png `
+  --output 01-wechat-cover-combined-1283x383.png
+```
+
 ### 为单个概念生成一张图
 
 ```text
@@ -162,9 +181,9 @@ Use $ian-orange-head-illustrations 帮我编辑这张图，去掉左上角的“
 4. 为每张图标明图像角色，并选择相应的封面、正文或总结构图
 5. 重新发明一个低科技、怪诞但成立的物理隐喻
 6. 让橘子头承担核心动作
-7. 每张图单独调用图像模型生成
-8. 按 QA checklist 检查：封面主题与标题、正文单一认知锚点、总结图是否能让用户独立照做或理解，以及共同的场景背景、视觉呼吸空间、橘子头身份与动作、像素字体、橙色主体、非 PPT 感
-9. 保存最终 PNG，并报告用途和路径
+7. 每张图单独调用图像模型生成；公众号首图分别生成横图和方图
+8. 按 QA checklist 检查：封面主题与标题、公众号首图尺寸和独立构图、正文单一认知锚点、总结图是否能让用户独立照做或理解，以及共同的场景背景、视觉呼吸空间、橘子头身份与动作、像素字体、橙色主体、非 PPT 感
+9. 公众号首图检查通过后用脚本拼接；保存最终 PNG，并报告用途和路径
 
 ---
 
@@ -185,6 +204,8 @@ Use $ian-orange-head-illustrations 帮我编辑这张图，去掉左上角的“
     │   └── openai.yaml
     ├── assets/
     │   └── orange-head-reference.png
+    ├── scripts/
+    │   └── stitch_wechat_cover.py
     └── references/
         ├── style-dna.md
         ├── orange-head-ip.md

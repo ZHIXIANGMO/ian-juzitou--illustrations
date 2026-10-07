@@ -1,6 +1,6 @@
 interface:
   display_name: "Ian 橘子头配图"
-  short_description: "为中文文章生成橘子头像素封面、正文配图和总结图"
+  short_description: "生成橘子头像素文章配图与公众号首图"
   default_prompt: "Use $ian-orange-head-illustrations to 为这篇中文文章设计并生成一组橘子头像素配图，包含开头封面、正文配图和结尾总结信息图。"
 policy:
   allow_implicit_invocation: true
