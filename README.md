@@ -235,46 +235,5 @@ ian-orange-head-illustrations/
 
 ---
 
-## 相关项目
-
-- [Ian Handdrawn PPT](https://github.com/helloianneo/ian-handdrawn-ppt) — 中文手绘技术 PPT-style 页面图生成 Skill
-- [Awesome Claude Code Skills](https://github.com/helloianneo/awesome-claude-code-skills) — Claude Code Skills / Agents / Plugins 精选合集
-- [Obsidian + Claude AI Second Brain](https://github.com/helloianneo/obsidian-ai-second-brain) — Obsidian + Claude AI 个人知识库搭建指南
-
----
-
-## 关于作者
-
-**Ian (伊恩)** — 产品设计师 / 一人公司实践者 / AI Builder
-
-用 AI 团队打造一人公司。
-
-- GitHub: [helloianneo](https://github.com/helloianneo)
-- X/Twitter: [@ianneo_ai](https://x.com/ianneo_ai)
-- 网站: [www.ianneo.xyz](https://www.ianneo.xyz)
-- 微信: `ianneoxyz`
-- 邮箱: hello.neoc@gmail.com
-
----
-
-## 继续探索
-
-这套橘子头配图 Skill，只是我用 AI 搭建个人生产系统里的一个小工具。
-
-如果你也在用 AI 做内容、知识库、工作流或产品化，可以继续看我的网站：[www.ianneo.xyz](https://www.ianneo.xyz)。
-
-只想先观察，可以关注我的 [X/Twitter](https://x.com/ianneo_ai)。
-
-想了解 Indie Builders Club，加微信：`ianneoxyz`，备注「OPC」。
-
-<p>
-  <img src="assets/ian-wechat-qr.jpg" alt="Ian 微信二维码" width="120">
-</p>
-
-不方便扫码也可以搜索微信：`ianneoxyz`。
-
----
-
-## License
 
 MIT License. See [LICENSE](LICENSE).
